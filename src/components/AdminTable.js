@@ -25,7 +25,7 @@ const AdminTable = ({
         <thead className="thead-dark">
           <tr>
             <th>
-              <input type="checkbox" onChange={handleSelectAll} />
+              <input id="selectAllCheckbox" type="checkbox" onChange={handleSelectAll} />
             </th>
             <th>ID</th>
             <th>Name</th>

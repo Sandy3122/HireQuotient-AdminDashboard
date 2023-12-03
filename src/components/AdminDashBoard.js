@@ -64,21 +64,29 @@ const AdminDashboard = () => {
     setEditedId(null);
   };
 
-  const handleSearch = (e) => {
-    const searchTerm = e.target.value.toLowerCase();
+  const handleSearch = () => {
+    const searchTermLower = search.toLowerCase();
 
-    setSearch(searchTerm);
-
-    if (searchTerm === "") {
+    if (search === "") {
       setFilteredData(data.slice((page - 1) * 10, page * 10));
     } else {
       const filteredData = data.filter((item) => {
         return Object.values(item).some((value) =>
-          value.toString().toLowerCase().includes(searchTerm)
+          value.toString().toLowerCase().includes(searchTermLower)
         );
       });
 
       setFilteredData(filteredData.slice(0, 10));
+    }
+  };
+
+  const handleSearchInputChange = (e) => {
+    setSearch(e.target.value);
+  };
+
+  const handleSearchKeyPress = (e) => {
+    if (e.key === "Enter") {
+      handleSearch();
     }
   };
 
@@ -94,6 +102,12 @@ const AdminDashboard = () => {
     setData(updatedData);
     setFilteredData(updatedData.slice((page - 1) * 10, page * 10));
     setSelected([]);
+
+    // Uncheck the "Select All" checkbox after deleting rows
+    const selectAllCheckbox = document.getElementById("selectAllCheckbox");
+    if (selectAllCheckbox) {
+      selectAllCheckbox.checked = false;
+    }
   };
 
   const handleSelectAll = (e) => {
@@ -121,7 +135,7 @@ const AdminDashboard = () => {
 
   const renderPageNumbers = () => {
     const totalPageCount = Math.ceil(data.length / 10);
-    const visiblePageNumbers = 3; // Change this value to set the number of visible page numbers
+    const visiblePageNumbers = 3; // We have to change this value to set the no. of visible page numbers
 
     const getPageNumbers = () => {
       const currentPage = page;
@@ -175,14 +189,28 @@ const AdminDashboard = () => {
 
       <div className="container-fluid mt-4">
         <div className="d-flex justify-content-between mb-4">
-          <div>
+        <div className="input-group rounded">
             <input
-              type="text"
+              type="search"
+              className="form-control rounded"
               placeholder="Search"
+              aria-label="Search"
+              aria-describedby="search-addon"
               value={search}
-              onChange={handleSearch}
-              className="form-control"
+              onChange={handleSearchInputChange}
+              onKeyPress={handleSearchKeyPress}
             />
+            <button
+              className="btn btn-secondary"
+              data-mdb-ripple-init
+              type="button"
+              id="search-addon"
+              onClick={handleSearch}
+            >
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">
+            <path d="M11.742 10.344a6.5 6.5 0 1 0-1.397 1.398h-.001c.03.04.062.078.098.115l3.85 3.85a1 1 0 0 0 1.415-1.414l-3.85-3.85a1.007 1.007 0 0 0-.115-.1zM12 6.5a5.5 5.5 0 1 1-11 0 5.5 5.5 0 0 1 11 0"/>
+            </svg>
+            </button>
           </div>
           <div className="">
             <button

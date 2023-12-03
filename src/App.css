@@ -6,26 +6,36 @@
   padding: 0.8rem 0.8rem !important;
 }
 
-
 .btn-outline-secondary {
   --bs-btn-hover-color: #000000 !important;
   --bs-btn-hover-bg: transparent !important;
+}
+
+.form-control:focus {
+  box-shadow: none !important;
+}
+
+
+
+.input-group{
+  width: auto !important;
 }
 
 .btn:focus {
   box-shadow: none !important;
 }
 
-
-/* .form-control:focus {
-  box-shadow: none !important;
-} */
-
-.thead-dark{
-  background-color:black;
-  color: #ffff;
+.table .thead-dark th{
+  background-color:#000000;
 }
 
-.selected-row {
-  background-color: #180a0a !important;
+/* custom style for selected rows */
+.selected-row td {
+  background-color: #D3D3D3;
 }
+
+/* Overriding the Bootstrap style for unselected rows in tbody */
+.table > tbody > tr:not(.selected-row) > td {
+  background-color: initial;
+}
+
