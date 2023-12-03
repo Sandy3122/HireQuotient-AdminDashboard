@@ -187,9 +187,9 @@ const AdminDashboard = () => {
     <>
       <Navbar />
 
-      <div className="container-fluid mt-4">
-        <div className="d-flex justify-content-between mb-4">
-        <div className="input-group rounded">
+      <div className="container-fluid mt-3">
+        <div className="d-flex justify-content-between mb-3">
+        <div className="input-group rounded px-4">
             <input
               type="search"
               className="form-control rounded"
@@ -212,7 +212,7 @@ const AdminDashboard = () => {
             </svg>
             </button>
           </div>
-          <div className="">
+          <div className="px-4">
             <button
               onClick={handleDeleteSelectedRows}
               className="btn btn-danger"

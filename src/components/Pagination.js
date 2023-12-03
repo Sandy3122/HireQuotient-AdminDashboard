@@ -4,7 +4,7 @@ import React from "react";
 
 const Pagination = ({ page, handlePageChange, totalPageCount, renderPageNumbers }) => {
   return (
-    <div className="row">
+    <div className="row px-4 mb-4">
       <div className="col-12 d-flex justify-content-end">
         <button
           onClick={() => handlePageChange(1)}

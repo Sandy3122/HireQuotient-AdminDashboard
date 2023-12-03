@@ -1,3 +1,12 @@
+body, html {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+
+* {
+  box-sizing: border-box;
+}
+
 .App {
   text-align: center;
 }
@@ -15,6 +24,10 @@
   box-shadow: none !important;
 }
 
+
+.container, .container-fluid{
+  padding: 0 !important;
+}
 
 
 .input-group{
